@@ -1,3 +1,5 @@
 altair
 pandas
+influxdb-client
+netCDF4
 streamlit
