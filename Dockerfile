@@ -13,7 +13,10 @@ RUN apt-get update && apt-get install -y \
 
 RUN git clone https://github.com/w34sel/BiFrostPandaPower_StreamLit.git
 
-RUN pip3 install -r requirements.txt
+COPY requirements.txt /tmp/requirements.txt
+RUN python3 -m pip install -r /tmp/requirements.txt
+
+#RUN pip3 install -r requirements.txt
 
 EXPOSE 8501
 
