@@ -2,7 +2,11 @@ from collections import namedtuple
 import altair as alt
 import math
 import pandas as pd
+import influxdb_client
+import netCDF4 as nc
 import streamlit as st
+
+from influxdb_client.client.write_api import SYNCHRONOUS
 
 """
 # Welcome to Streamlit!
