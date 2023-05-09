@@ -5,4 +5,4 @@ Installation
 - cd to the folder where you placed the Dockerfile
 - "docker build -t bifrostdv ."
 - "docker images"
-- "docker run -p 8501:8501 bifrostdv"
+- "docker run -p 8501:8501 -v ${PWD}:/app bifrostdv"

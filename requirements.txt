@@ -2,4 +2,9 @@ altair
 pandas
 influxdb-client
 netCDF4
+matplotlib
+numpy
+mpld3
+streamlit_option_menu
 streamlit
+

@@ -2,11 +2,43 @@ from collections import namedtuple
 import altair as alt
 import math
 import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+import streamlit as st
 import influxdb_client
 import netCDF4 as nc
 import streamlit as st
 
-from influxdb_client.client.write_api import SYNCHRONOUS
+
+from streamlit_option_menu import option_menu
+
+
+
+
+
+# 1. as sidebar menu
+with st.sidebar:
+    selected = option_menu("Main Menu", ["Home", 'Settings'], 
+        icons=['house', 'gear'], menu_icon="cast", default_index=1)
+    selected
+
+# 2. horizontal menu
+selected2 = option_menu(None, ["Home", "Upload", "Tasks", 'Settings'], 
+    icons=['house', 'cloud-upload', "list-task", 'gear'], 
+    menu_icon="cast", default_index=0, orientation="horizontal")
+selected2
+
+# 3. CSS style definitions
+selected3 = option_menu(None, ["Home", "Upload",  "Tasks", 'Settings'], 
+    icons=['house', 'cloud-upload', "list-task", 'gear'], 
+    menu_icon="cast", default_index=0, orientation="horizontal",
+    styles={
+        "container": {"padding": "0!important", "background-color": "#fafafa"},
+        "icon": {"color": "orange", "font-size": "25px"}, 
+        "nav-link": {"font-size": "25px", "text-align": "left", "margin":"0px", "--hover-color": "#eee"},
+        "nav-link-selected": {"background-color": "green"},
+    }
+)
 
 """
 # Welcome to Streamlit!
@@ -19,8 +51,6 @@ forums](https://discuss.streamlit.io).
 In the meantime, below is an example of what you can do with just a few lines of code:
 """
 
-# generate a navbar for streamlit
-st.set_page_config(page_title="BDV", page_icon=":eyeglasses:", layout="wide")
 
 with st.echo(code_location='below'):
     total_points = st.slider("Number of points in spiral", 1, 5000, 2000)
@@ -39,6 +69,20 @@ with st.echo(code_location='below'):
         y = radius * math.sin(angle)
         data.append(Point(x, y))
 
+
+
     st.altair_chart(alt.Chart(pd.DataFrame(data), height=500, width=500)
         .mark_circle(color='#0068c9', opacity=0.5)
-        .encode(x='x:Q', y='y:Q'))
+        .encode(x='x:Q', y='y:Q').interactive())
+    
+
+
+
+
+
+
+
+
+
+
+
